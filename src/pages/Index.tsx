@@ -1,12 +1,19 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthScreen } from "@/components/AuthScreen";
+import { Navbar } from "@/components/Navbar";
+import { Dashboard } from "@/components/Dashboard";
 
 const Index = () => {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <AuthScreen />;
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-subtle">
+      <Navbar />
+      <Dashboard />
     </div>
   );
 };
